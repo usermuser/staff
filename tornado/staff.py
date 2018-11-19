@@ -2,18 +2,23 @@
 import tornado.ioloop
 import tornado.web
 from tornado.options import define, options
-define("port", default=8888, help="run on the given port", type=int)
+from handlers import MainHandler, AddHandler
+import settings
 
 
 def make_app():
     return tornado.web.Application([
-        (r"/", MainHandler),
-    ], debug=True)
+        (r'/', MainHandler),
+        (r'/staff/add', AddHandler),
+    ], autoreload=False)
 
 def main():
     app = make_app()
     server = tornado.httpserver.HTTPServer(app)
     server.bind(options.port)
+    print('server started on port {}:'.format(options.port))
+    # since i use ubuntu, think about using listen
+    # instead of bind https://github.com/tornadoweb/tornado/issues/2426
     server.start(0)  # forks one process per cpu
     tornado.ioloop.IOLoop.current().start()
 
