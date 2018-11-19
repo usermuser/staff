@@ -5,11 +5,6 @@ from tornado.options import define, options
 define("port", default=8888, help="run on the given port", type=int)
 
 
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        # self.write("Hello, world")
-        self.render('templates/list.html', title='Staff List')
-
 def make_app():
     return tornado.web.Application([
         (r"/", MainHandler),
