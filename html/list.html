@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-    <title>Главная</title>
+    <title>Сотрудники</title>
 </head>
 <body>
-	<h2>Список сотрудников
-	  	<ul>
+	<h2><a href="staff/list">Back to staff list</a></h2>
+	<h2>Staff list
+	  	<ol>
 		    <li><a href="index.html">Max Frei</a>
 		    	<input type="checkbox">
 		    </li>
@@ -26,7 +27,11 @@
 	<button>Add</button>
 	<button>Delete</button>
 	<button>Update</button>
-	<button>Replace</button>
-
+	<select name="filter" size="4">
+	  <option value="Female">show females</option>
+	  <option value="Male">show males</option>
+	  <option value="asc">sort by salary asc</option>
+	  <option value="desc">sort by salary desc</option>
+	</select>
 </body>
 </html>
