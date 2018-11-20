@@ -12,7 +12,7 @@ class AddHandler(tornado.web.RequestHandler):
         email = self.get_argument('email')
         salary = self.get_argument('salary')
         new_record = [name, surname, date_of_birth, sex, email, salary]
-        print('new record data', new_record)
+        # print('new record data', new_record)
         database.add(new_record)
         # all_records = database.get_all()
         # self.redirect('templates/list.html', title='Added new record with name: {}'.format(name))

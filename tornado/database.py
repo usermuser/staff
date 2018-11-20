@@ -2,13 +2,13 @@ import sqlite3 as lite
 
 ## I'm not using try except constructions because of speed
 ## Going to add them in refactoring phase
-
+DATABASE='staff.db'
 people = (
     (1, 'Max', 'Frei', '01.01.1980', 'F', 'max_01@gmail.com', 1000),
     (2, 'Guido', 'Helsing', '03.05.1985', 'M', 'guido_van_helsing@rambler.ru', 2999),
     (3, 'James', 'Bennet', '13.12.2000', 'M', 'jamesbennet@yandex.ru', 5000),
 )
-def db_init(dbname='staff.db'): # Drop table and fill with test data
+def db_init(dbname=DATABASE): # Drop table and fill with test data
     con = lite.connect(dbname)
     with con:
         cur = con.cursor()
@@ -17,7 +17,7 @@ def db_init(dbname='staff.db'): # Drop table and fill with test data
         cur.executemany("INSERT INTO Staff_table VALUES(?, ?, ?, ?, ?, ?, ?)", people)
     return
 
-def add(new_record, dbname='staff.db'):
+def add(new_record, dbname=DATABASE):
     # TODO fix wrong Id writing to db while adding new_record
     con = lite.connect(dbname)
     with con:
@@ -27,7 +27,7 @@ def add(new_record, dbname='staff.db'):
         con.commit()
 
 
-def del(email, dbname='staff.db'): # delete record from db, where email==given email
+def del(email, dbname=DATABASE): # delete record from db, where email==given email
     con = lite.connect(dbname)
     with con:
         cur = con.cursor()
@@ -35,7 +35,7 @@ def del(email, dbname='staff.db'): # delete record from db, where email==given e
         con.commit()
 
 
-def get_filtered_by_sex(dbname='staff.db',sex='M'):
+def get_filtered_by_sex(dbname=DATABASE,sex='M'):
     sex.upper()
     con = lite.connect(dbname)
     with con:
@@ -47,7 +47,7 @@ def get_filtered_by_sex(dbname='staff.db',sex='M'):
     return rows
 
 
-def get_all(dbname='staff.db'):
+def get_all(dbname=DATABASE):
     con = lite.connect(dbname)
     with con:
         cur = con.cursor()
