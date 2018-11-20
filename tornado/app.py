@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import tornado.ioloop
 import tornado.web
 from tornado.web import url
@@ -14,7 +15,9 @@ def make_app():
         url(r'/staff/add', handlers.AddHandler, name='add'),
         url(r'/staff/drop', handlers.DBInitHandler, name='drop'),
         url(r'/staff/delete', handlers.DelHandler, name='delete'),
-    ], autoreload=False)
+        url(r'/(other\.js)', tornado.web.StaticFileHandler,
+            dict(path=settings.settings['static_path'])),
+    ], autoreload=False, **settings.settings)
 
 def main():
     app = make_app()

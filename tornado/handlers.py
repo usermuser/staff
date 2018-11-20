@@ -1,5 +1,9 @@
 import tornado, database
 
+handlers = [
+    (r'')
+]
+
 class AddHandler(tornado.web.RequestHandler):
     # def get(self):
     #     self.render('templates/add.html', title='Add')
