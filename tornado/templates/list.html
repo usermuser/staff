@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="{{ static_url('js/other.js') }}"></script>
+    <title>{{ title }}</title>
+</head>
+<body>
+	<h2><a href="{{reverse_url('home')}}">Back to Home Page</a></h2>
+
+	<h2>Staff list
+    {% if all_records %}
+        <ol>{% for item in all_records %}
+            <li>{{ item[1] }} {{ item[2] }}
+                <input type="checkbox">
+            </li>
+
+            {% end %}
+        </ol>
+    {% else %}
+        <p>No staff records in database</p>
+    {% end %}
+	</h2>
+    <hr>
+
+
+	<br>
+	<h2>some test info</h2>
+
+	<ul>{% for item in all_records %}
+		<li>{{ item }}</li>
+	{% end %}
+	</ul>
+
+	<h3>What you wan't to do?</h3>
+	<h4>You can filter or sort records</h4>
+	<select name="filter" size="4">
+	  <option value="Female">show females</option>
+	  <option value="Male">show males</option>
+	  <option value="asc">sort by salary asc</option>
+	  <option value="desc">sort by salary desc</option>
+	</select>
+
+	<h4>Update record</h4>
+	To update record, choose it and press "Update" button
+	<button>Update</button>
+
+	<h4>Delete records</h4>
+	You can delete multiple records. Choose them and press "Delete" button
+	<button id="delete">Delete record</button>
+
+    <hr>
+    <form action="{{reverse_url('add')}}" method="post">
+		<fieldset>
+			<legend>Add new record</legend>
+			<p>Name: <input type="text" name="name"></p>
+			<p>Surname: <input type="text" name="surname"></p>
+			<p>Date of Birth: <input type="date" name="date_of_birth"></p>
+			<!--Sex: <input type="text" name="sex"><br>-->
+			<p>
+				<input type="radio" name="sex" value="F">Female
+				<input type="radio" name="sex" value="M" checked>Male
+			</p>
+			<p>Email: <input type="email" name="email"></p>
+			<p>Salary: <input type="number" name="salary"></p>
+			<p><input type="submit" value="add record"></p>
+		</fieldset>
+    </form>
+	<hr>
+	<footer>
+		Some rights can be reserved
+	</footer>
+</body>
+</html>
