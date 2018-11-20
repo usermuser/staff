@@ -15,7 +15,8 @@ class AddHandler(tornado.web.RequestHandler):
         print('new record data', new_record)
         database.add(new_record)
         all_records = database.get_all()
-        self.redirect('templates/list.html', title='Added new record with name: {}'.format(name))
+        # self.redirect('templates/list.html', title='Added new record with name: {}'.format(name))
+        self.redirect('/staff/list')
 
 
 class HomePageHandler(tornado.web.RequestHandler):
@@ -36,4 +37,5 @@ class StaffListHandler(tornado.web.RequestHandler):
 class DBInitHandler(tornado.web.RequestHandler):
     def get(self):
         database.db_init()
-        self.render('templates/list.html', title='Drop DB and fill with prepared data')
+        # self.render('templates/list.html', title='Drop DB and fill with prepared data')
+        self.redirect('/')

@@ -11,13 +11,16 @@ def db_init(dbname='staff.db'):
         cur = con.cursor()
         cur.execute("DROP TABLE IF EXISTS Staff_table")
         cur.execute("CREATE TABLE Staff_table(Id INT PRIMARY KEY, Name TEXT, Surname TEXT, Date_of_Birth DATE, Sex TEXT, Email TEXT, Salary INT)")
-        cur.executemany("INSERT INTO Staff_table VALUES(?, ?, ?, ?, ?, ?)", people)
+        cur.executemany("INSERT INTO Staff_table VALUES(?, ?, ?, ?, ?, ?, ?)", people)
+    return
 
 def add(new_record, dbname='staff.db'):
     con = lite.connect(dbname)
     with con:
         cur = con.cursor()
-        cur.execute('INSERT INTO Staff_table VALUES(?, ?, ?, ?, ?, ?)',new_record)
+        # last_id = cur.lastrowid
+        new_record.insert(0,4)
+        cur.execute('INSERT INTO Staff_table VALUES(?, ?, ?, ?, ?, ?, ?)',new_record)
         con.commit()
 
 def get_filtered_by_sex(dbname='staff.db',sex='M'):
