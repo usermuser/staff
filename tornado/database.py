@@ -22,7 +22,7 @@ def add(new_record, dbname=DATABASE):
     con = lite.connect(dbname)
     with con:
         cur = con.cursor()
-        new_record.insert(0,5)
+        new_record.insert(0,5) # 0 - index, 5 - Id value to be inserted in db
         cur.execute('INSERT INTO Staff_table VALUES(?, ?, ?, ?, ?, ?, ?)',new_record)
         con.commit()
 
