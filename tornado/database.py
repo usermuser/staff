@@ -14,6 +14,13 @@ def db_init(dbname='staff.db'):
         cur.execute("CREATE TABLE Staff_table(Id INT, Name TEXT, Surname TEXT, Date_of_Birth DATE, Sex TEXT, Email TEXT, Salary INT)")
         cur.executemany("INSERT INTO Staff_table VALUES(?, ?, ?, ?, ?, ?, ?)", people)
 
+def add(new_record, dbname='staff.db'):
+    con = lite.connect(dbname)
+    with con:
+        cur = con.cursor()
+        cur.execute('INSERT INTO Staff_table VALUES(?, ?, ?, ?, ?, ?, ?)',new_record)
+        con.commit()
+
 def get_filtered_by_sex(dbname='staff.db',sex='M'):
     sex.upper()
     con = lite.connect(dbname)

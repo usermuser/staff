@@ -6,23 +6,8 @@
 </head>
 <body>
 	<h2><a href="{{reverse_url('home')}}">Back to Home Page</a></h2>
+
 	<h2>Staff list
-	  	<ol>
-		    <li><a href="index.html">Max Frei</a>
-		    	<input type="checkbox">
-		    </li>
-
-		    <li><a href="catalog.html">Guido van Rossum</a>
-		    	<input type="checkbox">
-		    </li>
-
-		    <li><a href="contacts.html">James Bennet</a>
-		    	<input type="checkbox">
-		    </li>
-	  	</ul>
-	  	<hr>
-	</h2>
-
     {% if all_records %}
         <ol>{% for item in all_records %}
             <li>{{ item[1] }} {{ item[2] }}
@@ -34,17 +19,25 @@
     {% else %}
         <p>No staff records in database</p>
     {% end %}
+	</h2>
     <hr>
 
-	<h3>Что вы хотите сделать?</h3>
-	<button>Delete</button>
-	<button>Update</button>
+	<h3>What you wan't to do?</h3>
+	<h4>You can filter or sort records</h4>
 	<select name="filter" size="4">
 	  <option value="Female">show females</option>
 	  <option value="Male">show males</option>
 	  <option value="asc">sort by salary asc</option>
 	  <option value="desc">sort by salary desc</option>
 	</select>
+
+	<h4>Update record</h4>
+	To update record, choose it and press "Update" button
+	<button>Update</button>
+
+	<h4>Delete records</h4>
+	You can delete multiple records. Choose them and press "Delete" button
+	<button>Delete record</button>
 
     <hr>
     <form action="{{reverse_url('add')}}" method="post">
@@ -60,8 +53,12 @@
 			</p>
 			<p>Email: <input type="email" name="email"></p>
 			<p>Salary: <input type="number" name="salary"></p>
-			<button>Add</button>
+			<p><input type="submit" value="add record"></p>
 		</fieldset>
     </form>
+	<hr>
+	<footer>
+		Some rights can be reserved
+	</footer>
 </body>
 </html>
