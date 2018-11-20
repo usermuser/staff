@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 import tornado.ioloop
 import tornado.web
+from tornado.web import url
 from tornado.options import define, options
-# from handlers import MainHandler, AddHandler
 import handlers
 import settings
 
 
+#    url(r'', handlers.StaffListHandler, name='list')
+
 def make_app():
     return tornado.web.Application([
-        (r'/', handlers.MainHandler),
-        (r'/staff/add', handlers.AddHandler),
-        (r'/staff/drop', handlers.DBInitHandler),
+        url(r'/', handlers.HomePageHandler, name='home'),
+        url(r'/staff/list', handlers.StaffListHandler, name='list'),
+        url(r'/staff/add', handlers.AddHandler),
+        url(r'/staff/drop', handlers.DBInitHandler),
     ], autoreload=False)
 
 def main():
