@@ -14,8 +14,15 @@ class AddHandler(tornado.web.RequestHandler):
         new_record = [name, surname, date_of_birth, sex, email, salary]
         print('new record data', new_record)
         database.add(new_record)
-        all_records = database.get_all()
+        # all_records = database.get_all()
         # self.redirect('templates/list.html', title='Added new record with name: {}'.format(name))
+        self.redirect('/staff/list')
+
+
+class DelHandler(tornado.web.RequestHandler):
+    def post(self):
+        email = self.get_argument('email')
+        database.del(email)
         self.redirect('/staff/list')
 
 

@@ -13,7 +13,7 @@ def make_app():
         url(r'/staff/list', handlers.StaffListHandler, name='list'),
         url(r'/staff/add', handlers.AddHandler, name='add'),
         url(r'/staff/drop', handlers.DBInitHandler, name='drop'),
-        # url(r'/staff/drop', handlers.DBInitHandler, name='update'),
+        url(r'/staff/delete', handlers.DelHandler, name='delete'),
     ], autoreload=False)
 
 def main():
