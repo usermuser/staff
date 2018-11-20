@@ -7,8 +7,6 @@ import handlers
 import settings
 
 
-#    url(r'', handlers.StaffListHandler, name='list')
-
 def make_app():
     return tornado.web.Application([
         url(r'/', handlers.HomePageHandler, name='home'),

@@ -22,6 +22,15 @@
 	</h2>
     <hr>
 
+
+	<br>
+	<h2>some test info</h2>
+
+	<ul>{% for item in all_records %}
+		<li>{{ item }}</li>
+	{% end %}
+	</ul>
+
 	<h3>What you wan't to do?</h3>
 	<h4>You can filter or sort records</h4>
 	<select name="filter" size="4">
