@@ -22,7 +22,7 @@ class AddHandler(tornado.web.RequestHandler):
 class DelHandler(tornado.web.RequestHandler):
     def post(self):
         email = self.get_argument('email')
-        database.del(email)
+        database.delete(email)
         self.redirect('/staff/list')
 
 

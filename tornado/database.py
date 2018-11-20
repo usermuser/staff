@@ -27,7 +27,7 @@ def add(new_record, dbname=DATABASE):
         con.commit()
 
 
-def del(email, dbname=DATABASE): # delete record from db, where email==given email
+def delete(email, dbname=DATABASE): # delete record from db, where email==given email
     con = lite.connect(dbname)
     with con:
         cur = con.cursor()
