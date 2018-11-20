@@ -13,8 +13,9 @@ def make_app():
     return tornado.web.Application([
         url(r'/', handlers.HomePageHandler, name='home'),
         url(r'/staff/list', handlers.StaffListHandler, name='list'),
-        url(r'/staff/add', handlers.AddHandler),
-        url(r'/staff/drop', handlers.DBInitHandler),
+        url(r'/staff/add', handlers.AddHandler, name='add'),
+        url(r'/staff/drop', handlers.DBInitHandler, name='drop'),
+        # url(r'/staff/drop', handlers.DBInitHandler, name='update'),
     ], autoreload=False)
 
 def main():

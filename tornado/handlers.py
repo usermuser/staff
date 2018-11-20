@@ -16,6 +16,7 @@ class StaffListHandler(tornado.web.RequestHandler):
 
     def get(self):
         all_records=database.get_all()
+        print(all_records)
         self.render('templates/list.html', all_records=all_records, title='Staff List')
 
 

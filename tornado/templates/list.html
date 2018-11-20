@@ -25,13 +25,18 @@
 
     {% if all_records %}
         <ol>{% for item in all_records %}
-            <li>{{ item }}</li>
+            <li>{{ item[1] }} {{ item[2] }}
+                <input type="checkbox">
+            </li>
+
             {% end %}
         </ol>
+    {% else %}
+        <p>No staff records in database</p>
     {% end %}
+    <hr>
 
 	<h3>Что вы хотите сделать?</h3>
-	<button>Add</button>
 	<button>Delete</button>
 	<button>Update</button>
 	<select name="filter" size="4">
@@ -40,5 +45,23 @@
 	  <option value="asc">sort by salary asc</option>
 	  <option value="desc">sort by salary desc</option>
 	</select>
+
+    <hr>
+    <form action="{{reverse_url('add')}}" method="post">
+		<fieldset>
+			<legend>Add new record</legend>
+			<p>Name: <input type="text" name="name"></p>
+			<p>Surname: <input type="text" name="surname"></p>
+			<p>Date of Birth: <input type="date" name="date_of_birth"></p>
+			<!--Sex: <input type="text" name="sex"><br>-->
+			<p>
+				<input type="radio" name="sex" value="F">Female
+				<input type="radio" name="sex" value="M" checked>Male
+			</p>
+			<p>Email: <input type="email" name="email"></p>
+			<p>Salary: <input type="number" name="salary"></p>
+			<button>Add</button>
+		</fieldset>
+    </form>
 </body>
 </html>
