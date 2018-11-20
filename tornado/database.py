@@ -35,7 +35,7 @@ def delete(email, dbname=DATABASE): # delete record from db, where email==given 
         con.commit()
 
 
-def get_filtered_by_sex(dbname=DATABASE,sex='M'):
+def get_filtered_by_sex(dbname=DATABASE,sex='M'): # temporary hardcode sex='M' for testing
     sex.upper()
     con = lite.connect(dbname)
     with con:
