@@ -10,16 +10,16 @@ def db_init(dbname='staff.db'):
     with con:
         cur = con.cursor()
         cur.execute("DROP TABLE IF EXISTS Staff_table")
-        cur.execute("CREATE TABLE Staff_table(Id INT PRIMARY KEY, Name TEXT, Surname TEXT, Date_of_Birth DATE, Sex TEXT, Email TEXT, Salary INT)")
+        cur.execute("CREATE TABLE Staff_table(Id INT, Name TEXT, Surname TEXT, Date_of_Birth DATE, Sex TEXT, Email TEXT, Salary INT)")
         cur.executemany("INSERT INTO Staff_table VALUES(?, ?, ?, ?, ?, ?, ?)", people)
     return
 
 def add(new_record, dbname='staff.db'):
+    # TODO fix wrong Id writing to db while adding new_record
     con = lite.connect(dbname)
     with con:
         cur = con.cursor()
-        # last_id = cur.lastrowid
-        new_record.insert(0,4)
+        new_record.insert(0,5)
         cur.execute('INSERT INTO Staff_table VALUES(?, ?, ?, ?, ?, ?, ?)',new_record)
         con.commit()
 
