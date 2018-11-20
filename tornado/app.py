@@ -19,7 +19,7 @@ def main():
     server = tornado.httpserver.HTTPServer(app)
     server.bind(options.port)
     print('server started on port {}:'.format(options.port))
-    print(options.as_dict())
+    # print(options.as_dict()) #
     # since i use ubuntu, think about using listen
     # instead of bind https://github.com/tornadoweb/tornado/issues/2426
     server.start(0)  # forks one process per cpu

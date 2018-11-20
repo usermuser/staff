@@ -8,10 +8,8 @@ people = (
 
 def db_init(dbname='staff.db'):
     con = lite.connect(dbname)
-
     with con:
         cur = con.cursor()
-
         cur.execute("DROP TABLE IF EXISTS Staff_table")
         cur.execute("CREATE TABLE Staff_table(Id INT, Name TEXT, Surname TEXT, Date_of_Birth DATE, Sex TEXT, Email TEXT, Salary INT)")
         cur.executemany("INSERT INTO Staff_table VALUES(?, ?, ?, ?, ?, ?, ?)", people)
@@ -19,17 +17,24 @@ def db_init(dbname='staff.db'):
 def get_filtered_by_sex(dbname='staff.db',sex='M'):
     sex.upper()
     con = lite.connect(dbname)
-
     with con:
         cur = con.cursor()
-
         cur.execute("SELECT Name, Surname, Sex, Salary FROM Staff_table WHERE Sex=:sex",{'sex':sex})
 
     rows = cur.fetchall()
     return rows
 
 
+def get_all(dbname='staff.db'):
+    con = lite.connect(dbname)
+    with con:
+        cur = con.cursor()
+        cur.execute("SELECT * FROM Staff_table")
+    rows = cur.fetchall()
+    return rows
+
 if __name__ == "__main__":
     db_init()
-    print(get_filtered_by_sex())
+    print(get_filtered_by_sex()) # list with records filtered by sex
+    print(get_all()) # list with all records
 
